@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ROUTES, USER_DATA } from "../constants";
 
-function SignUp(props) {
-  const [userInfo, setUserInfo] = useState({
+function SignUp() {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
@@ -10,38 +13,46 @@ function SignUp(props) {
     isPassword: true,
   });
 
-  const handleChangeUserInfo = (e) => {
+  const handleChangeUserData = (e) => {
     const target = e.target;
-    setUserInfo((prev) => {
+    setUserData((prev) => {
       return { ...prev, [target.id]: target.value };
     });
 
     if (target.id === "email") {
-      const boolean = target.value.includes("@") ? false : true;
+      const boolean = target.value.includes(USER_DATA.EMAIL_ADDRESS_FORMAT)
+        ? false
+        : true;
       setDisabled((prev) => {
         return { ...prev, isEmail: boolean };
       });
       return;
     }
     if (target.id === "password") {
-      const boolean = target.value.length >= 8 ? false : true;
+      const boolean =
+        target.value.length >= USER_DATA.PASSWORD_MIN_LENGTH ? false : true;
       setDisabled((prev) => {
         return { ...prev, isPassword: boolean };
       });
     }
   };
 
+  const handleUserDataSubmit = (e) => {
+    e.preventDefault();
+    navigate(ROUTES.SIGNIN);
+  };
+
   return (
-    <section>
+    <main>
       <h1>회원가입</h1>
-      <form action="">
+      <form onSubmit={handleUserDataSubmit}>
         <label htmlFor="email">이메일</label>
         <input
           id="email"
           type="email"
           data-testid="email-input"
           placeholder="example@email.com"
-          onChange={handleChangeUserInfo}
+          onChange={handleChangeUserData}
           required
         />
         <label htmlFor="password">비밀번호</label>
@@ -50,7 +61,7 @@ function SignUp(props) {
           type="password"
           data-testid="password-input"
           placeholder="8자리 이상 입력해주세요."
-          onChange={handleChangeUserInfo}
+          onChange={handleChangeUserData}
           required
         />
         <button
@@ -60,7 +71,7 @@ function SignUp(props) {
           회원가입
         </button>
       </form>
-    </section>
+    </main>
   );
 }
 
