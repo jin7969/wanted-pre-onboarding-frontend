@@ -40,3 +40,8 @@ a {
   text-decoration: none;
   color: gray;
 }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
