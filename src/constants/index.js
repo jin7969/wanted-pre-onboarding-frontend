@@ -3,6 +3,7 @@ const API_BASE_URL = "https://www.pre-onboarding-selection-task.shop";
 const ROUTES = {
   HOME: "/",
   SIGNUP: "/signup",
+  TODO: "/todo",
 };
 
 const USER_DATA = {

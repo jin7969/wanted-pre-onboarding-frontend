@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL, ROUTES } from "../constants";
 import useUserDataForm from "../hooks/useUserDataForm";
@@ -27,6 +28,13 @@ function SignUp() {
         alert(`회원가입 중 에러가 발생했습니다. \n에러코드 : ${error}`)
       );
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      navigate(ROUTES.TODO);
+      alert("로그인 상태입니다.");
+    }
+  }, []);
 
   return (
     <main>

@@ -1,8 +1,8 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ROUTES } from "./constants";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import { ROUTES } from "./constants";
+import TodoList from "./pages/TodoList";
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.HOME} element={<Login />} />
         <Route path={ROUTES.SIGNUP} element={<SignUp />} />
+        <Route path={ROUTES.TODO} element={<TodoList />} />
       </Routes>
     </BrowserRouter>
   );
