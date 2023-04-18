@@ -4,12 +4,12 @@ import useUserDataForm from "../hooks/useUserDataForm";
 
 function SignUp() {
   const navigate = useNavigate();
-  const { userData, handleChangeUserData, isDisabled } = useUserDataForm();
-  const { email, password } = userData;
+  const { email, password, handleUserDataChange, isDisabled } =
+    useUserDataForm();
 
-  const handleUserDataSubmit = async (e) => {
+  const handleSignUpDataSubmit = async (e) => {
     e.preventDefault();
-    console.log({ email, password });
+
     await fetch(`${API_BASE_URL}/auth/signup`, {
       method: "POST",
       headers: {
@@ -31,7 +31,7 @@ function SignUp() {
   return (
     <main>
       <h1>회원가입</h1>
-      <form onSubmit={handleUserDataSubmit}>
+      <form onSubmit={handleSignUpDataSubmit}>
         <label htmlFor="email">이메일</label>
         <input
           id="email"
@@ -39,7 +39,7 @@ function SignUp() {
           value={email}
           data-testid="email-input"
           placeholder="example@email.com"
-          onChange={handleChangeUserData}
+          onChange={handleUserDataChange}
           required
         />
         <label htmlFor="password">비밀번호</label>
@@ -49,7 +49,7 @@ function SignUp() {
           value={password}
           data-testid="password-input"
           placeholder="8자리 이상 입력해주세요."
-          onChange={handleChangeUserData}
+          onChange={handleUserDataChange}
           required
         />
         <button

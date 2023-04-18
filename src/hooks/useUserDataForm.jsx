@@ -11,7 +11,7 @@ const useUserDataForm = () => {
     isPassword: true,
   });
 
-  const handleChangeUserData = (e) => {
+  const handleUserDataChange = (e) => {
     const target = e.target;
     setUserData((prev) => {
       return { ...prev, [target.id]: target.value };
@@ -35,7 +35,9 @@ const useUserDataForm = () => {
     }
   };
 
-  return { userData, isDisabled, handleChangeUserData };
+  const { email, password } = userData;
+
+  return { email, password, isDisabled, handleUserDataChange };
 };
 
 export default useUserDataForm;
