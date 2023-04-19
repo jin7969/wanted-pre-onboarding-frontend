@@ -3,6 +3,7 @@ import { ROUTES } from "./constants";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import TodoList from "./pages/TodoList";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path={ROUTES.HOME} element={<Login />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTES.TODO} element={<TodoList />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
