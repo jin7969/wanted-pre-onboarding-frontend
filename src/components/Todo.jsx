@@ -5,6 +5,10 @@ function Todo({ item, onUpdate, onDelete }) {
   const [isModify, setModify] = useState(false);
   const [text, setText] = useState(todo);
 
+  const onChangeCheckbox = (e) => {
+    onUpdate(id, todo, e.target.checked);
+  };
+
   const handleSubmitButtonClick = () => {
     if (text.trim().length === 0) return;
 
@@ -14,7 +18,12 @@ function Todo({ item, onUpdate, onDelete }) {
 
   return (
     <li>
-      <input type="checkbox" id={id} />
+      <input
+        type="checkbox"
+        id={id}
+        checked={isCompleted}
+        onChange={onChangeCheckbox}
+      />
       {isModify ? (
         <>
           <input
