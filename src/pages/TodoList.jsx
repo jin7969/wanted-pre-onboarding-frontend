@@ -6,11 +6,27 @@ import Todo from "../components/Todo";
 
 function TodoList() {
   const navigate = useNavigate();
-  const [todos, setTodos] = useState([]);
+  const [todoList, setTodoList] = useState([]);
   const accessToken = localStorage.getItem("accessToken");
 
-  const handleAddTodo = async (todo) => {
-    await fetch(`${API_BASE_URL}/todos`, {
+  const DeleteTodo = (id) => {
+    fetch(`${API_BASE_URL}/todos/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (response.status !== 204) throw new Error(`${response.status}`);
+        getTodoList();
+      })
+      .catch((error) =>
+        alert(`TODO 삭제 에러가 발생했습니다. \n에러내용: ${error}`)
+      );
+  };
+
+  const CreateTodo = (todo) => {
+    fetch(`${API_BASE_URL}/todos`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -25,12 +41,12 @@ function TodoList() {
         getTodoList();
       })
       .catch((error) =>
-        alert(`TODO를 등록하던 중 에러가 발생했습니다. \n에러내용 ${error}`)
+        alert(`TODO를 등록 에러가 발생했습니다. \n에러내용 ${error}`)
       );
   };
 
-  const getTodoList = async () => {
-    await fetch(`${API_BASE_URL}/todos`, {
+  const getTodoList = () => {
+    fetch(`${API_BASE_URL}/todos`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -38,11 +54,10 @@ function TodoList() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setTodos(data);
+        setTodoList(data);
       })
       .catch((error) =>
-        alert(`todo 데이터 조회 에러가 발생했습니다. \n에러내용: ${error}`)
+        alert(`TODO_LIST 조회 에러가 발생했습니다. \n에러내용: ${error}`)
       );
   };
 
@@ -58,11 +73,11 @@ function TodoList() {
   return (
     <main>
       <ul>
-        {todos.map((item) => (
-          <Todo key={item.id} item={item} />
+        {todoList.map((item) => (
+          <Todo key={item.id} item={item} onDelete={DeleteTodo} />
         ))}
       </ul>
-      <AddTodo onAdd={handleAddTodo} />
+      <AddTodo onAdd={CreateTodo} />
     </main>
   );
 }

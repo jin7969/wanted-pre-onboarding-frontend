@@ -8,10 +8,10 @@ function SignUp() {
   const { email, password, handleUserDataChange, isDisabled } =
     useUserDataForm();
 
-  const handleSignUpDataSubmit = async (e) => {
+  const handleSignUpDataSubmit = (e) => {
     e.preventDefault();
 
-    await fetch(`${API_BASE_URL}/auth/signup`, {
+    fetch(`${API_BASE_URL}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

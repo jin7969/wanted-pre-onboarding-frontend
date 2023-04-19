@@ -8,10 +8,10 @@ function Login() {
   const { email, password, handleUserDataChange, isDisabled } =
     useUserDataForm();
 
-  const handleLoginDataSubmit = async (e) => {
+  const handleLoginDataSubmit = (e) => {
     e.preventDefault();
 
-    await fetch(`${API_BASE_URL}/auth/signin`, {
+    fetch(`${API_BASE_URL}/auth/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
