@@ -40,20 +40,20 @@
 
 **Assignment 6** | 리스트 페이지에 새로운 TODO를 입력할 수 있는 input과 추가 button을 만들어주세요
 
-- [ ] TODO 입력 input에는 data-testid="new-todo-input" 속성을 부여해주세요
-- [ ] TODO 추가 button에는 data-testid="new-todo-add-button" 속성을 부여해주세요
-- [ ] 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요
-- [ ] TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다.
+- [x] TODO 입력 input에는 data-testid="new-todo-input" 속성을 부여해주세요
+- [x] TODO 추가 button에는 data-testid="new-todo-add-button" 속성을 부여해주세요
+- [x] 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요
+- [x] TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다.
 
 **Assignment 7**
 
-- [ ] TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
+- [x] TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
 
 **Assignment 8**
 
-- [ ] TODO 우측에 수정버튼과 삭제 버튼을 만들어주세요
-- [ ] 수정 버튼에는 data-testid="modify-button" 속성을 부여해주세요
-- [ ] 삭제 버튼에는 data-testid="delete-button" 속성을 부여해주세요
+- [x] TODO 우측에 수정버튼과 삭제 버튼을 만들어주세요
+- [x] 수정 버튼에는 data-testid="modify-button" 속성을 부여해주세요
+- [x] 삭제 버튼에는 data-testid="delete-button" 속성을 부여해주세요
 
 **Assignment 9** | 투두 리스트의 삭제 기능을 구현해주세요
 
