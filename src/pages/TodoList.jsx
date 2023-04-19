@@ -3,6 +3,7 @@ import { API_BASE_URL, ROUTES, STORAGE_TOKEN_KEY } from "../constants";
 import { useNavigate } from "react-router-dom";
 import AddTodo from "../components/AddTodo";
 import Todo from "../components/Todo";
+import styled from "styled-components";
 
 function TodoList() {
   const navigate = useNavigate();
@@ -109,8 +110,8 @@ function TodoList() {
   }, []);
 
   return (
-    <section>
-      <button onClick={handleLogout}>로그아웃</button>
+    <S.Section>
+      <S.LogoutButton onClick={handleLogout}>로그아웃</S.LogoutButton>
       <ul>
         {todoList.map((item) => (
           <Todo
@@ -122,8 +123,27 @@ function TodoList() {
         ))}
       </ul>
       <AddTodo onAdd={createTodo} />
-    </section>
+    </S.Section>
   );
 }
 
 export default TodoList;
+
+const S = {
+  Section: styled.section`
+    padding: 18px;
+    position: relative;
+    width: 70%;
+    height: 100%;
+    overflow: scroll;
+  `,
+  LogoutButton: styled.button`
+    position: absolute;
+    right: 10px;
+    padding: 4px 8px;
+    background-color: #acacac;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+  `,
+};
