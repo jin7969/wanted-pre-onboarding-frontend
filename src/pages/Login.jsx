@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL, ROUTES, STORAGE_TOKEN_KEY } from "../constants";
 import useUserDataForm from "../hooks/useUserDataForm";
+import styled from "styled-components";
 
 function Login() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function Login() {
   return (
     <section>
       <h1>로그인</h1>
-      <form onSubmit={handleLoginDataSubmit}>
+      <S.Form onSubmit={handleLoginDataSubmit}>
         <label htmlFor="email">이메일</label>
         <input
           id="email"
@@ -68,10 +69,33 @@ function Login() {
         >
           로그인
         </button>
-      </form>
-      <Link to={ROUTES.SIGN_UP}>회원가입</Link>
+      </S.Form>
+      <S.LinkWrapper>
+        <Link to={ROUTES.SIGN_UP}>회원가입</Link>
+      </S.LinkWrapper>
     </section>
   );
 }
 
 export default Login;
+
+const S = {
+  Form: styled.form`
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-bottom: 12px;
+      height: 24px;
+    }
+
+    button {
+      height: 28px;
+      margin-bottom: 10px;
+    }
+  `,
+  LinkWrapper: styled.div`
+    text-align: center;
+  `,
+};

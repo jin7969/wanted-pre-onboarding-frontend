@@ -26,6 +26,7 @@ body {
   overflow: hidden;
   border-radius: 20px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   -webkit-box-shadow: 5px 5px 21px 4px rgba(0, 0, 0, 0.45);
   box-shadow: 5px 5px 21px 4px rgba(0, 0, 0, 0.45);
@@ -37,8 +38,8 @@ code {
 }
 
 a {
-  text-decoration: none;
-  color: gray;
+  color: rgb(59, 59, 59);
+  cursor: pointer;
 }
 
 ul {
