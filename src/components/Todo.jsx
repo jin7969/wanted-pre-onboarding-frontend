@@ -37,6 +37,7 @@ function Todo({ item, onUpdate, onDelete }) {
             value={text}
             data-testid="modify-input"
             onChange={(e) => setText(e.target.value)}
+            autoFocus
           />
           <div>
             <button data-testid="submit-button" onClick={handleSubmitButton}>
