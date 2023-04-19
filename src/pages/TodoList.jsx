@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_BASE_URL, ROUTES } from "../constants";
+import { API_BASE_URL, ROUTES, STORAGE_TOKEN_KEY } from "../constants";
 import { useNavigate } from "react-router-dom";
 import AddTodo from "../components/AddTodo";
 import Todo from "../components/Todo";
@@ -7,7 +7,7 @@ import Todo from "../components/Todo";
 function TodoList() {
   const navigate = useNavigate();
   const [todoList, setTodoList] = useState([]);
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem(STORAGE_TOKEN_KEY);
 
   const updateTodo = (id, todo, isCompleted) => {
     fetch(`${API_BASE_URL}/todos/${id}`, {
@@ -77,6 +77,12 @@ function TodoList() {
       );
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem(STORAGE_TOKEN_KEY);
+    navigate(ROUTES.HOME);
+    alert("로그아웃 되었습니다.");
+  };
+
   useEffect(() => {
     if (!accessToken) {
       navigate(ROUTES.HOME);
@@ -103,7 +109,8 @@ function TodoList() {
   }, []);
 
   return (
-    <main>
+    <section>
+      <button onClick={handleLogout}>로그아웃</button>
       <ul>
         {todoList.map((item) => (
           <Todo
@@ -115,7 +122,7 @@ function TodoList() {
         ))}
       </ul>
       <AddTodo onAdd={createTodo} />
-    </main>
+    </section>
   );
 }
 

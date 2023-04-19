@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { API_BASE_URL, ROUTES } from "../constants";
+import { API_BASE_URL, ROUTES, STORAGE_TOKEN_KEY } from "../constants";
 import useUserDataForm from "../hooks/useUserDataForm";
 
 function SignUp() {
@@ -30,14 +30,14 @@ function SignUp() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem(STORAGE_TOKEN_KEY)) {
       navigate(ROUTES.TODO);
       alert("로그인 상태입니다.");
     }
   }, []);
 
   return (
-    <main>
+    <section>
       <h1>회원가입</h1>
       <form onSubmit={handleSignUpDataSubmit}>
         <label htmlFor="email">이메일</label>
@@ -68,7 +68,7 @@ function SignUp() {
         </button>
       </form>
       <Link to={ROUTES.HOME}>뒤로가기</Link>
-    </main>
+    </section>
   );
 }
 
