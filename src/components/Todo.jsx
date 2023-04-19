@@ -9,7 +9,12 @@ function Todo({ item, onUpdate, onDelete }) {
     onUpdate(id, todo, e.target.checked);
   };
 
-  const handleSubmitButtonClick = () => {
+  const handleCancelButton = () => {
+    setText(todo);
+    setModify(false);
+  };
+
+  const handleSubmitButton = () => {
     if (text.trim().length === 0) return;
 
     onUpdate(id, text, isCompleted);
@@ -32,10 +37,10 @@ function Todo({ item, onUpdate, onDelete }) {
             data-testid="modify-input"
             onChange={(e) => setText(e.target.value)}
           />
-          <button data-testid="submit-button" onClick={handleSubmitButtonClick}>
+          <button data-testid="submit-button" onClick={handleSubmitButton}>
             제출
           </button>
-          <button data-testid="cancel-button" onClick={() => setModify(false)}>
+          <button data-testid="cancel-button" onClick={handleCancelButton}>
             취소
           </button>
         </>
