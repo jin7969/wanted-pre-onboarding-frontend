@@ -1,17 +1,31 @@
 import { useState } from "react";
 
-function Todo({ item, onDelete }) {
+function Todo({ item, onUpdate, onDelete }) {
+  const { id, todo, isCompleted } = item;
   const [isModify, setModify] = useState(false);
-  const { id, todo } = item;
+  const [text, setText] = useState(todo);
+
+  const handleSubmitButtonClick = () => {
+    if (text.trim().length === 0) return;
+
+    onUpdate(id, text, isCompleted);
+    setModify(false);
+  };
 
   return (
     <li>
       <input type="checkbox" id={id} />
-
       {isModify ? (
         <>
-          <input type="text" value={todo} data-testid="modify-input" />
-          <button data-testid="submit-button">제출</button>
+          <input
+            type="text"
+            value={text}
+            data-testid="modify-input"
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button data-testid="submit-button" onClick={handleSubmitButtonClick}>
+            제출
+          </button>
           <button data-testid="cancel-button" onClick={() => setModify(false)}>
             취소
           </button>

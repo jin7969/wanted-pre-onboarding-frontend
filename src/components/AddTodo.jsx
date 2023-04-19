@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 function AddTodo({ onAdd }) {
   const [text, setText] = useState("");
-
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
 
   const handleTodoSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +15,7 @@ function AddTodo({ onAdd }) {
     <form onSubmit={handleTodoSubmit}>
       <input
         type="text"
-        onChange={handleChange}
+        onChange={(e) => setText(e.target.value)}
         value={text}
         placeholder="Add Todo"
         data-testid="new-todo-input"
