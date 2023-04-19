@@ -19,11 +19,10 @@ function SignUp() {
       },
       body: JSON.stringify({ email, password }),
     })
-      .then((data) => {
-        if (data.status === 201) {
-          alert("회원가입이 완료되었습니다.");
-          navigate(ROUTES.HOME);
-        } else throw data.status;
+      .then((response) => {
+        if (!response.ok) throw new Error(response.status);
+        alert("회원가입이 완료되었습니다.");
+        navigate(ROUTES.HOME);
       })
       .catch((error) =>
         alert(`회원가입 중 에러가 발생했습니다. \n에러코드 : ${error}`)

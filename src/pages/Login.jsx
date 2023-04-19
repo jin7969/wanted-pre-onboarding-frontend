@@ -19,13 +19,14 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) throw new Error(response.status);
+        return response.json();
+      })
       .then((data) => {
-        if (data.access_token) {
-          localStorage.setItem(STORAGE_TOKEN_KEY, data.access_token);
-          alert("로그인되었습니다.");
-          navigate(ROUTES.TODO);
-        } else throw data.message;
+        localStorage.setItem(STORAGE_TOKEN_KEY, data.access_token);
+        alert("로그인되었습니다.");
+        navigate(ROUTES.TODO);
       })
       .catch((error) =>
         alert(`로그인 중 에러가 발생했습니다. \n에러내용: ${error}`)
