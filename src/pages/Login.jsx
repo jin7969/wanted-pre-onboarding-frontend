@@ -70,9 +70,7 @@ function Login() {
           로그인
         </button>
       </S.Form>
-      <S.LinkWrapper>
-        <Link to={ROUTES.SIGN_UP}>회원가입</Link>
-      </S.LinkWrapper>
+      <Link to={ROUTES.SIGN_UP}>회원가입</Link>
     </section>
   );
 }
@@ -94,8 +92,5 @@ const S = {
       height: 28px;
       margin-bottom: 10px;
     }
-  `,
-  LinkWrapper: styled.div`
-    text-align: center;
   `,
 };
