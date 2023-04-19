@@ -132,14 +132,11 @@ export default TodoList;
 const S = {
   Section: styled.section`
     padding: 18px;
-    position: relative;
     width: 70%;
     height: 100%;
     overflow: scroll;
   `,
   LogoutButton: styled.button`
-    position: absolute;
-    right: 10px;
     padding: 4px 8px;
     background-color: #acacac;
     font-weight: bold;

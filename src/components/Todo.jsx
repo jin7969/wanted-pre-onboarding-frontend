@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 function Todo({ item, onUpdate, onDelete }) {
   const { id, todo, isCompleted } = item;
@@ -22,7 +23,7 @@ function Todo({ item, onUpdate, onDelete }) {
   };
 
   return (
-    <li>
+    <S.List>
       <input
         type="checkbox"
         id={id}
@@ -31,32 +32,56 @@ function Todo({ item, onUpdate, onDelete }) {
       />
       {isModify ? (
         <>
-          <input
+          <S.ModifyInput
             type="text"
             value={text}
             data-testid="modify-input"
             onChange={(e) => setText(e.target.value)}
           />
-          <button data-testid="submit-button" onClick={handleSubmitButton}>
-            제출
-          </button>
-          <button data-testid="cancel-button" onClick={handleCancelButton}>
-            취소
-          </button>
+          <div>
+            <button data-testid="submit-button" onClick={handleSubmitButton}>
+              제출
+            </button>
+            <button data-testid="cancel-button" onClick={handleCancelButton}>
+              취소
+            </button>
+          </div>
         </>
       ) : (
         <>
           <label htmlFor={id}>{todo}</label>
-          <button data-testid="modify-button" onClick={() => setModify(true)}>
-            수정
-          </button>
-          <button data-testid="delete-button" onClick={() => onDelete(id)}>
-            삭제
-          </button>
+          <div>
+            <button data-testid="modify-button" onClick={() => setModify(true)}>
+              수정
+            </button>
+            <button data-testid="delete-button" onClick={() => onDelete(id)}>
+              삭제
+            </button>
+          </div>
         </>
       )}
-    </li>
+    </S.List>
   );
 }
 
 export default Todo;
+
+const S = {
+  List: styled.li`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    button {
+      margin: 0 2px;
+    }
+
+    label {
+      flex: 1 1 0%;
+      padding: 0 4px;
+    }
+  `,
+  ModifyInput: styled.input`
+    flex: 1 1 0%;
+  `,
+};
